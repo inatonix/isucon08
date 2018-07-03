@@ -663,6 +663,11 @@ func postProfile(c echo.Context) error {
 		}
 
 		avatarName = fmt.Sprintf("%x%s", sha1.Sum(avatarData), ext)
+
+		if err := ioutil.WriteFile(iconPath(avatarName), avatarData, 0644); err != nil {
+			return err
+		}
+
 	}
 
 	if avatarName != "" && len(avatarData) > 0 {
@@ -708,10 +713,6 @@ func getIcon(c echo.Context) error {
 		mime = "image/gif"
 	default:
 		return echo.ErrNotFound
-	}
-
-	if err := ioutil.WriteFile(iconPath(name), data, 0644); err != nil {
-		return err
 	}
 
 	return c.Blob(http.StatusOK, mime, data)
