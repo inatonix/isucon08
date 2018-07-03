@@ -710,9 +710,9 @@ func getIcon(c echo.Context) error {
 		return echo.ErrNotFound
 	}
 
-	if err := ioutil.WriteFile(iconPath(name), data, 0644); err != nil {
-		return err
-	}
+	// if err := ioutil.WriteFile(iconPath(name), data, 0644); err != nil {
+	// 	return err
+	// }
 
 	return c.Blob(http.StatusOK, mime, data)
 }
