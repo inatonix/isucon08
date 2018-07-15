@@ -61,7 +61,7 @@ func init() {
 	}
 	db_password := os.Getenv("ISUBATA_DB_PASSWORD")
 	if db_password != "" {
-		db_password = ":" + "syuya0813"
+		db_password = ":"
 	}
 
 	dsn := fmt.Sprintf("%s%s@tcp(%s:%s)/isubata?parseTime=true&loc=Local&charset=utf8mb4",
